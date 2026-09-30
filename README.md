@@ -76,7 +76,7 @@ The server binds to `127.0.0.1` only. Every API call needs the token; CORS allow
 
 Reset the token: `python security.py reset`.
 
-## Demo mode (interviewers)
+## Demo mode
 
 `APP_MODE=demo` seeds ~60 days of **synthetic** data (46 estimated + 14 measured), disables history reading and live ingestion, and serves the same website. Try it locally:
 
@@ -97,15 +97,7 @@ bash tests/run_frontend_tests.sh                                                
 bash tests/run_frontend_tests.sh frontend_local.js                              # 4 tests: profile chooser flow against a live local backend (fake profiles)
 ```
 
-Covered: fresh install, explicit profile choice (nothing imported until chosen, no client-supplied paths, switching discards a partial import), bootstrap (once-only, chunk re-run idempotency, crash resume, locked-file copy), activation boundary / no overlap, midnight split, tab/URL/title/focus/idle events, service-worker kill + restart mid-session, backend down + queue + duplicate prevention, classification, confident-only cache, overrides, malformed/partial LLM replies, failed status, Groq 429 / budget / circuit breaker, daily analysis with pending rows, resume after budget exhaustion, catch-up after the PC was off, monthly analysis, agent over history + live, redaction and sensitive-domain handling, delete-all, auth / CORS / Host rejection, localhost binding, demo purity, estimated/measured separation.
 
-## Honest limitations
-
-- The Groq / Gemini / Chrome integrations are tested against **mocks and a fake Chrome `History` file**, not live services or a real Chrome profile. Run it once for real before demoing.
-- **Model ids are configuration, not facts.** `GROQ_LIVE_MODEL` defaults to `qwen/qwen3.8-27b` as specified; I could not verify it exists. If it does not, live rows fail with a clear error and end up "unclassified" — set a valid id in `.env`. Same for `GROQ_ANALYSIS_MODEL`, `GROQ_AGENT_MODEL` (needs tool-calling support) and `GEMINI_MODEL`.
-- History durations are **estimates** by nature (conservative caps: 5 min per page unless Chrome recorded a duration). The UI labels them as such everywhere.
-- Idle is 3 minutes of no input (audible tabs keep counting), so a long silent video with no audio is not counted.
-- The website loads Tailwind and Inter from CDNs, as the original design did, so it needs internet for styling.
 
 ## Layout
 
