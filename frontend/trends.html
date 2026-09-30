@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Your rhythm, over time — Where Did My Time Go?</title>
+<script>
+  try {
+    if (localStorage.getItem("wdmt-theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="grain" data-page="trends">
+
+<header class="nav nav-blur sticky top-0 z-20 border-b border-[var(--line)] px-8">
+  <div class="mx-auto flex h-[68px] max-w-[1180px] items-center justify-between gap-4">
+    <a href="index.html" class="flex items-center gap-2 text-left">
+      <span class="grid h-8 w-8 place-items-center rounded-xl bg-[var(--lime)] text-[#243313]">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6z"/></svg>
+      </span>
+      <span class="text-[14px] font-semibold tracking-[-.03em]">Where Did My Time Go?</span>
+    </a>
+    <nav class="desktop-nav flex items-center gap-7" aria-label="Primary">
+      <a href="index.html" class="navitem">Home</a>
+      <a href="activity.html" class="navitem">Activity</a>
+      <a href="insights.html" class="navitem">Insights</a>
+      <a href="trends.html" class="navitem active" aria-current="page">Trends</a>
+      <a href="ask.html" class="navitem">Ask AI</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <span class="wide-only mr-2 flex items-center gap-1.5 text-xs text-[var(--muted)]">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M3 10h18"/><path d="M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg>
+        
+      </span>
+      <button class="theme-toggle grid h-9 w-9 place-items-center rounded-full border border-[var(--line)]" aria-label="Toggle theme" type="button">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v2"/><path d="M12 19v2"/><path d="M3 12h2"/><path d="M19 12h2"/><path d="M5.6 5.6 7 7"/><path d="M17 17l1.4 1.4"/><path d="M18.4 5.6 17 7"/><path d="M7 17l-1.4 1.4"/><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.7 15.2A8.5 8.5 0 0 1 8.8 3.3 8.5 8.5 0 1 0 20.7 15.2z"/></svg>
+      </button>
+      <button class="grid h-9 w-9 place-items-center rounded-full bg-[var(--ink)] text-[var(--paper)]" aria-label="Settings" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06-2 2-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V20h-2.82v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06-2-2 .06-.06A1.65 1.65 0 0 0 7.6 15a1.65 1.65 0 0 0-1.51-1H6v-2.82h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06 2-2 .06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V5h2.82v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06 2 2-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H20V14h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav flex gap-5 overflow-auto pb-2" aria-label="Primary mobile">
+    <a href="index.html" class="navitem">Home</a>
+    <a href="activity.html" class="navitem">Activity</a>
+    <a href="insights.html" class="navitem">Insights</a>
+    <a href="trends.html" class="navitem active" aria-current="page">Trends</a>
+    <a href="ask.html" class="navitem">Ask AI</a>
+  </nav>
+</header>
+
+<main class="main mx-auto max-w-[1180px] px-8 pb-16 pt-12 page">
+
+  <header class="flex flex-wrap items-end justify-between gap-5">
+    <div>
+      <p class="text-xs font-semibold text-[var(--muted)]">LONGER VIEW</p>
+      <h1 class="display mt-3 text-[54px] leading-none">Your rhythm, over time</h1>
+      <p class="mt-4 text-[16px] text-[var(--muted)]">Zoom out to see the habits shaping your week.</p>
+    </div>
+    <div class="flex rounded-full bg-[var(--faint)] p-1">
+      <button class="range active">7 days</button>
+      <button class="range">30 days</button>
+      <button class="range">Monthly</button>
+    </div>
+  </header>
+
+  <section class="trend-grid mt-11 grid grid-cols-2 gap-x-12 gap-y-12">
+
+    <section>
+      <div class="mb-5">
+        <p class="text-sm font-semibold">Focus over time</p>
+        <p class="mt-1 text-xs text-[var(--muted)]">Daily focused hours</p>
+      </div>
+      <svg class="h-[190px] w-full overflow-visible" viewBox="0 0 620 190" preserveAspectRatio="none" role="img" aria-label="Focus over time">
+        <g class="chart-grid">
+          <line x1="0" x2="620" y1="30" y2="30"/><line x1="0" x2="620" y1="75" y2="75"/><line x1="0" x2="620" y1="120" y2="120"/><line x1="0" x2="620" y1="165" y2="165"/>
+        </g>
+        <polyline class="chart-path" points="0,108.71 103.33,64.12 206.67,94.82 310,55.84 413.33,75.37 516.67,136.59 620,97.53"/>
+        <circle cx="0" cy="108.71" r="3.6" fill="var(--ink)"/><circle cx="103.33" cy="64.12" r="3.6" fill="var(--ink)"/><circle cx="206.67" cy="94.82" r="3.6" fill="var(--ink)"/><circle cx="310" cy="55.84" r="3.6" fill="var(--ink)"/><circle cx="413.33" cy="75.37" r="3.6" fill="var(--ink)"/><circle cx="516.67" cy="136.59" r="3.6" fill="var(--ink)"/><circle cx="620" cy="97.53" r="3.6" fill="var(--ink)"/>
+        <text x="0" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Mon</text>
+        <text x="103.33" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Tue</text>
+        <text x="206.67" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Wed</text>
+        <text x="310" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Thu</text>
+        <text x="413.33" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Fri</text>
+        <text x="516.67" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Sat</text>
+        <text x="620" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Sun</text>
+      </svg>
+    </section>
+
+    <section>
+      <div class="mb-5">
+        <p class="text-sm font-semibold">Learning over time</p>
+        <p class="mt-1 text-xs text-[var(--muted)]">Daily learning hours</p>
+      </div>
+      <svg class="h-[190px] w-full overflow-visible" viewBox="0 0 620 190" preserveAspectRatio="none" role="img" aria-label="Learning over time">
+        <g class="chart-grid">
+          <line x1="0" x2="620" y1="30" y2="30"/><line x1="0" x2="620" y1="75" y2="75"/><line x1="0" x2="620" y1="120" y2="120"/><line x1="0" x2="620" y1="165" y2="165"/>
+        </g>
+        <polyline class="soft-path" points="0,116.22 103.33,85.57 206.67,108.59 310,66.38 413.33,89.41 516.67,120.11 620,100.92"/>
+        <circle cx="0" cy="116.22" r="3.6" fill="var(--lime-deep)"/><circle cx="103.33" cy="85.57" r="3.6" fill="var(--lime-deep)"/><circle cx="206.67" cy="108.59" r="3.6" fill="var(--lime-deep)"/><circle cx="310" cy="66.38" r="3.6" fill="var(--lime-deep)"/><circle cx="413.33" cy="89.41" r="3.6" fill="var(--lime-deep)"/><circle cx="516.67" cy="120.11" r="3.6" fill="var(--lime-deep)"/><circle cx="620" cy="100.92" r="3.6" fill="var(--lime-deep)"/>
+        <text x="0" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Mon</text>
+        <text x="103.33" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Tue</text>
+        <text x="206.67" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Wed</text>
+        <text x="310" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Thu</text>
+        <text x="413.33" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Fri</text>
+        <text x="516.67" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Sat</text>
+        <text x="620" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Sun</text>
+      </svg>
+    </section>
+
+    <section>
+      <div class="mb-5">
+        <p class="text-sm font-semibold">Distraction over time</p>
+        <p class="mt-1 text-xs text-[var(--muted)]">Daily time away</p>
+      </div>
+      <svg class="h-[190px] w-full overflow-visible" viewBox="0 0 620 190" preserveAspectRatio="none" role="img" aria-label="Distraction over time">
+        <g class="chart-grid">
+          <line x1="0" x2="620" y1="30" y2="30"/><line x1="0" x2="620" y1="75" y2="75"/><line x1="0" x2="620" y1="120" y2="120"/><line x1="0" x2="620" y1="165" y2="165"/>
+        </g>
+        <polyline class="chart-path" points="0,90.34 103.33,104.17 206.67,73.02 310,111.12 413.33,93.80 516.67,62.59 620,99.00"/>
+        <circle cx="0" cy="90.34" r="3.6" fill="var(--ink)"/><circle cx="103.33" cy="104.17" r="3.6" fill="var(--ink)"/><circle cx="206.67" cy="73.02" r="3.6" fill="var(--ink)"/><circle cx="310" cy="111.12" r="3.6" fill="var(--ink)"/><circle cx="413.33" cy="93.80" r="3.6" fill="var(--ink)"/><circle cx="516.67" cy="62.59" r="3.6" fill="var(--ink)"/><circle cx="620" cy="99.00" r="3.6" fill="var(--ink)"/>
+        <text x="0" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Mon</text>
+        <text x="103.33" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Tue</text>
+        <text x="206.67" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Wed</text>
+        <text x="310" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Thu</text>
+        <text x="413.33" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Fri</text>
+        <text x="516.67" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Sat</text>
+        <text x="620" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Sun</text>
+      </svg>
+    </section>
+
+    <section class="card p-7">
+      <p class="text-sm font-semibold">Activity distribution</p>
+      <p class="mt-1 text-xs text-[var(--muted)]">How this period was composed</p>
+      <div class="mt-7 flex h-8 overflow-hidden rounded-xl">
+        <div style="width:40%;background:#b8df69"></div>
+        <div style="width:24%;background:#c7baff"></div>
+        <div style="width:11%;background:#ffcb91"></div>
+        <div style="width:25%;background:#f0b6c3"></div>
+      </div>
+      <div class="mt-6 grid grid-cols-2 gap-y-4">
+        <div class="flex items-center gap-2 text-sm"><i class="h-2 w-2 rounded-full" style="background:#b8df69"></i><span class="text-[var(--muted)]">Focused</span><b class="ml-auto mr-5">72h</b></div>
+        <div class="flex items-center gap-2 text-sm"><i class="h-2 w-2 rounded-full" style="background:#c7baff"></i><span class="text-[var(--muted)]">Learning</span><b class="ml-auto mr-5">41h</b></div>
+        <div class="flex items-center gap-2 text-sm"><i class="h-2 w-2 rounded-full" style="background:#ffcb91"></i><span class="text-[var(--muted)]">Break</span><b class="ml-auto mr-5">20h</b></div>
+        <div class="flex items-center gap-2 text-sm"><i class="h-2 w-2 rounded-full" style="background:#f0b6c3"></i><span class="text-[var(--muted)]">Distraction</span><b class="ml-auto mr-5">51h</b></div>
+      </div>
+    </section>
+
+  </section>
+
+  <section class="mt-14 rounded-[28px] bg-[var(--faint)] p-8 sm:p-10">
+    <div class="flex flex-wrap items-start justify-between gap-4">
+      <div>
+        <p class="text-xs font-semibold text-[var(--muted)]">MONTHLY SUMMARY</p>
+        <h2 class="display mt-3 text-[38px]">September 2026</h2>
+      </div>
+      <p class="metric text-[27px] font-semibold tracking-[-.06em]">184h <span class="text-sm font-medium text-[var(--muted)]">total browsing</span></p>
+    </div>
+    <div class="mt-9 grid grid-cols-2 gap-5 sm:grid-cols-4">
+      <div class="border-l border-[var(--line)] pl-4 first:border-0 first:pl-0"><p class="text-xs text-[var(--muted)]">Focused</p><p class="metric mt-1 text-[24px] font-semibold tracking-[-.055em]">72h</p></div>
+      <div class="border-l border-[var(--line)] pl-4"><p class="text-xs text-[var(--muted)]">Learning</p><p class="metric mt-1 text-[24px] font-semibold tracking-[-.055em]">41h</p></div>
+      <div class="border-l border-[var(--line)] pl-4"><p class="text-xs text-[var(--muted)]">Distraction</p><p class="metric mt-1 text-[24px] font-semibold tracking-[-.055em]">51h</p></div>
+      <div class="border-l border-[var(--line)] pl-4"><p class="text-xs text-[var(--muted)]">Breaks</p><p class="metric mt-1 text-[24px] font-semibold tracking-[-.055em]">20h</p></div>
+    </div>
+    <div class="mt-10 flex gap-4 border-t border-[var(--line)] pt-6">
+      <span class="ai-orb h-8 w-8 shrink-0 rounded-full"></span>
+      <p class="max-w-[700px] text-[16px] leading-7">Your focused time increased during the second half of the month, while late-afternoon distraction remained your most consistent pattern.</p>
+    </div>
+  </section>
+
+</main>
+
+<script src="assets/api.js"></script>
+<script src="assets/script.js" defer></script>
+<script src="assets/pages.js" defer></script>
+</body>
+</html>

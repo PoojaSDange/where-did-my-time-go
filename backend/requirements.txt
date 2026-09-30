@@ -1,0 +1,7 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+httpx>=0.27
+pydantic>=2.7
+python-dotenv>=1.0
+tzdata>=2024.1      # IANA timezone database (needed on Windows)
+tzlocal>=5.2        # detect the OS timezone on first run

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Where Did My Time Go?</title>
+
+<!-- Apply saved theme before first paint, so there's no flash of the wrong theme -->
+<script>
+  try {
+    if (localStorage.getItem("wdmt-theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  } catch (e) {}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="grain" data-page="home">
+
+<header class="nav nav-blur sticky top-0 z-20 border-b border-[var(--line)] px-8">
+  <div class="mx-auto flex h-[68px] max-w-[1180px] items-center justify-between gap-4">
+    <a href="index.html" class="flex items-center gap-2 text-left">
+      <span class="grid h-8 w-8 place-items-center rounded-xl bg-[var(--lime)] text-[#243313]">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6z"/></svg>
+      </span>
+      <span class="text-[14px] font-semibold tracking-[-.03em]">Where Did My Time Go?</span>
+    </a>
+    <nav class="desktop-nav flex items-center gap-7" aria-label="Primary">
+      <a href="index.html" class="navitem active" aria-current="page">Home</a>
+      <a href="activity.html" class="navitem">Activity</a>
+      <a href="insights.html" class="navitem">Insights</a>
+      <a href="trends.html" class="navitem">Trends</a>
+      <a href="ask.html" class="navitem">Ask AI</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <span class="wide-only mr-2 flex items-center gap-1.5 text-xs text-[var(--muted)]">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M3 10h18"/><path d="M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg>
+        
+      </span>
+      <button class="theme-toggle grid h-9 w-9 place-items-center rounded-full border border-[var(--line)]" aria-label="Toggle theme" type="button">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v2"/><path d="M12 19v2"/><path d="M3 12h2"/><path d="M19 12h2"/><path d="M5.6 5.6 7 7"/><path d="M17 17l1.4 1.4"/><path d="M18.4 5.6 17 7"/><path d="M7 17l-1.4 1.4"/><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.7 15.2A8.5 8.5 0 0 1 8.8 3.3 8.5 8.5 0 1 0 20.7 15.2z"/></svg>
+      </button>
+      <button class="grid h-9 w-9 place-items-center rounded-full bg-[var(--ink)] text-[var(--paper)]" aria-label="Settings" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06-2 2-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V20h-2.82v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06-2-2 .06-.06A1.65 1.65 0 0 0 7.6 15a1.65 1.65 0 0 0-1.51-1H6v-2.82h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06 2-2 .06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V5h2.82v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06 2 2-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H20V14h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav flex gap-5 overflow-auto pb-2" aria-label="Primary mobile">
+    <a href="index.html" class="navitem active" aria-current="page">Home</a>
+    <a href="activity.html" class="navitem">Activity</a>
+    <a href="insights.html" class="navitem">Insights</a>
+    <a href="trends.html" class="navitem">Trends</a>
+    <a href="ask.html" class="navitem">Ask AI</a>
+  </nav>
+</header>
+
+<main class="main mx-auto max-w-[1180px] px-8 pb-16 pt-12 page">
+
+  <!-- Hero -->
+  <section class="hero-grid grid grid-cols-[1.25fr_.75fr] items-end gap-12 border-b border-[var(--line)] pb-14">
+    <div>
+      <p class="mb-5 flex items-center gap-2 text-xs font-semibold text-[var(--muted)]">
+        <span class="h-2 w-2 rounded-full bg-[var(--lime-deep)]"></span>YOUR BROWSING, MADE CLEAR
+      </p>
+      <h1 class="display hero-title max-w-[680px] text-[75px] leading-[.88]">Where did your time go?</h1>
+      <p class="mt-7 max-w-[520px] text-[17px] leading-7 text-[var(--muted)]">Turn your browser history into a clear picture of how you actually spend your time — work, learning, breaks, and distractions.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="activity.html" class="btn primary">
+          View today's activity
+          <span class="ml-2 inline-block align-middle">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+        <a href="ask.html" class="btn">Ask AI</a>
+      </div>
+    </div>
+
+    <div class="card relative overflow-hidden p-6">
+      <div class="absolute -right-8 -top-9 h-40 w-40 rounded-full bg-[var(--lime)] opacity-60 blur-3xl"></div>
+      <p class="text-xs font-semibold text-[var(--muted)]">TODAY'S ANALYSIS</p>
+      <div class="mt-5 flex items-start gap-4">
+        <div class="ai-orb mt-1 h-10 w-10 shrink-0 rounded-full"></div>
+        <div>
+          <p class="flex items-center gap-1.5 text-sm font-semibold">
+            <span class="grid h-4 w-4 place-items-center rounded-full bg-[var(--lime)] text-[#2d4513]">
+              <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>
+            </span>
+            <span id="heroStatus">Analysis complete</span>
+          </p>
+          <p id="heroText" class="mt-3 text-[14px] leading-6 text-[var(--muted)]">You had <b class="text-[var(--ink)]">3h 10m</b> of focused activity. Your longest uninterrupted session was <b class="text-[var(--ink)]">1h 24m</b>.</p>
+        </div>
+      </div>
+      <a href="insights.html" class="mt-5 inline-block text-xs font-semibold underline decoration-[var(--line)] underline-offset-4">See full analysis</a>
+    </div>
+  </section>
+
+  <!-- Today snapshot -->
+  <section class="home-grid grid grid-cols-[1.45fr_.55fr] gap-7 py-12">
+    <div class="card p-7">
+      <div class="flex items-start justify-between">
+        <div>
+          <p class="text-sm font-semibold">Today</p>
+          <p id="todayTotal" class="metric mt-2 text-[42px] font-semibold tracking-[-.065em]">7h 42m <span class="text-base font-medium text-[var(--muted)]">online</span></p>
+        </div>
+        <span id="todayDate" class="tag focus">Sep 24</span>
+      </div>
+
+      <div class="mt-8">
+        <div id="segBar" class="flex h-11 gap-1 overflow-hidden rounded-[14px] bg-[var(--faint)] p-1">
+          <div title="Focused Work: 3h 10m" class="seg rounded-[10px] focus" style="width:41%"></div>
+          <div title="Learning: 1h 45m" class="seg rounded-[10px] learn" style="width:23%"></div>
+          <div title="Break: 42m" class="seg rounded-[10px] break" style="width:9%"></div>
+          <div title="Distraction: 2h 05m" class="seg rounded-[10px] distract" style="width:27%"></div>
+        </div>
+        <div id="segLegend" class="mt-5 grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-4">
+          <div>
+            <div class="flex items-center gap-2 text-xs text-[var(--muted)]"><i class="h-2 w-2 rounded-full focus"></i>Focused Work</div>
+            <p class="metric mt-1 text-[17px] font-semibold tracking-[-.04em]">3h 10m</p>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 text-xs text-[var(--muted)]"><i class="h-2 w-2 rounded-full learn"></i>Learning</div>
+            <p class="metric mt-1 text-[17px] font-semibold tracking-[-.04em]">1h 45m</p>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 text-xs text-[var(--muted)]"><i class="h-2 w-2 rounded-full break"></i>Break</div>
+            <p class="metric mt-1 text-[17px] font-semibold tracking-[-.04em]">42m</p>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 text-xs text-[var(--muted)]"><i class="h-2 w-2 rounded-full distract"></i>Distraction</div>
+            <p class="metric mt-1 text-[17px] font-semibold tracking-[-.04em]">2h 05m</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="flex flex-col justify-between rounded-[22px] bg-[var(--ink)] p-7 text-[var(--paper)]">
+      <div>
+        <div class="flex items-center gap-2 text-xs text-[#bfc1b9]"><span class="h-2 w-2 rounded-full bg-[var(--lime)]"></span>FOCUS WINDOW</div>
+        <p id="focusWindow" class="display mt-5 text-[29px] leading-[1.04]">Your focus was strongest between 9:00 AM and 12:00 PM today.</p>
+      </div>
+      <a href="trends.html" class="mt-9 flex items-center gap-2 text-left text-xs font-semibold text-[var(--lime)]">
+        Explore your rhythm
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </a>
+    </aside>
+  </section>
+
+  <!-- Retention -->
+  <section class="retention grid grid-cols-[1fr_.9fr] gap-10 border-t border-[var(--line)] pt-10">
+    <div>
+      <p class="text-sm font-semibold">Your data stays with you</p>
+      <p class="mt-2 max-w-[480px] text-sm leading-6 text-[var(--muted)]">Every session is kept in a local database on this computer. On top of it we keep daily and monthly summaries, so long-term trends stay fast and the AI only ever reads compact, redacted evidence.</p>
+    </div>
+    <div class="flex gap-5">
+      <div class="min-w-0 flex-1">
+        <p class="text-xs font-semibold">DETAILED SESSIONS</p>
+        <div class="mt-3 h-2 rounded-full bg-[var(--lime)]"></div>
+        <p id="retDetail" class="mt-2 text-xs text-[var(--muted)]">Sep 1 <span class="float-right">Sep 30</span></p>
+      </div>
+      <div class="min-w-0 flex-1">
+        <p class="text-xs font-semibold">MONTHLY SUMMARIES</p>
+        <div class="mt-3 flex gap-1">
+          <i class="h-2 flex-1 rounded-full bg-[var(--faint)]"></i>
+          <i class="h-2 flex-1 rounded-full bg-[var(--faint)]"></i>
+          <i class="h-2 flex-1 rounded-full bg-[var(--faint)]"></i>
+        </div>
+        <p id="retMonths" class="mt-2 text-xs text-[var(--muted)]">Aug · Jul · Jun</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="assets/api.js"></script>
+<script src="assets/script.js" defer></script>
+<script src="assets/pages.js" defer></script>
+</body>
+</html>

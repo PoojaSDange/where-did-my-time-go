@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Where Did My Time Go? - Tracker",
+  "version": "1.0.0",
+  "description": "Measures your active browsing time and sends it ONLY to your own local backend (localhost).",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoDUq9RIPQL/y8GdaFRdgCCEMYjen21GJGBG7x3xFek+PPw6bAIprRYIvrTuOX7NLmk5D1qHS6hnsVw9vFyGwG0WI1X0xgjS/kUHGdramXIFaeRLhSZCDBQX1uzfSdQAbT3FYFswNBlNM/7s+NAv6Z5b7uNeXFt2Y6UGQJ8DY/tRZC822cfh+WdTOoJqUBu6nHRha+eRfcFkzC4MlTzSE+vjp5Tv5uFo6xZ0/40mO0LY2H29hOWYfixAl169J24RIHNFlTtcKMnUahTbeACgxwloNIiOCKbi/ZK0DH8jsz66D9dF6j5ykEgqKkcWsiLHkX3/Sklo4Q0Y62x3MU2OF8wIDAQAB",
+  "minimum_chrome_version": "116",
+  "permissions": ["tabs", "storage", "alarms", "idle"],
+  "host_permissions": ["http://localhost/*", "http://127.0.0.1/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_title": "Where Did My Time Go?" }
+}

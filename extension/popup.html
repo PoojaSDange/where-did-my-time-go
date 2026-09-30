@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Where Did My Time Go?</title>
+<style>
+  :root { --ink:#20211f; --muted:#6b6d66; --line:#e3e4dc; --lime:#c9ef76; --paper:#fbfbf6; --rose:#f0b6c3; }
+  * { box-sizing: border-box; }
+  body { width: 340px; margin: 0; padding: 16px; background: var(--paper); color: var(--ink);
+         font: 13px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size: 15px; margin: 0 0 2px; letter-spacing: -.02em; }
+  .sub { color: var(--muted); font-size: 12px; margin-bottom: 14px; }
+  label { display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin: 10px 0 4px; letter-spacing: .04em; }
+  input, textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px;
+                    background: #fff; font: inherit; color: var(--ink); }
+  textarea { resize: vertical; min-height: 54px; }
+  button { padding: 8px 12px; border-radius: 999px; border: 1px solid var(--ink); background: var(--ink);
+           color: var(--paper); font: inherit; font-weight: 600; cursor: pointer; }
+  button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+  button.lime { background: var(--lime); color: #263310; border-color: var(--lime); }
+  button:disabled { opacity: .5; cursor: default; }
+  .row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .card { border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; margin-top: 12px; background: #fff; }
+  .dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; background:#bbb; }
+  .dot.ok { background:#62971b; } .dot.bad { background:#d9506c; }
+  .muted { color: var(--muted); } .err { color: #b3324f; }
+  a { color: var(--ink); }
+</style>
+</head>
+<body>
+  <h1>Where Did My Time Go?</h1>
+  <p class="sub">Sends data only to your own machine.</p>
+
+  <label for="baseUrl">LOCAL BACKEND URL</label>
+  <input id="baseUrl" placeholder="http://localhost:8000" spellcheck="false" />
+  <label for="token">API TOKEN (from backend/data/api_token.txt)</label>
+  <input id="token" type="password" placeholder="paste once" autocomplete="off" spellcheck="false" />
+  <div class="row">
+    <button id="save">Save &amp; connect</button>
+    <button id="activate" class="lime" disabled>Activate tracking</button>
+  </div>
+
+  <div class="card" id="status">
+    <div><span class="dot" id="connDot"></span><span id="conn">Not connected</span></div>
+    <div class="muted" id="act"></div>
+    <div class="muted" id="track"></div>
+    <div class="muted" id="queue"></div>
+    <div class="err" id="error"></div>
+  </div>
+
+  <label for="excluded">NEVER TRACK THESE DOMAINS (comma separated)</label>
+  <textarea id="excluded" placeholder="example.com, mybank.com" spellcheck="false"></textarea>
+  <div class="row">
+    <button id="saveExcluded" class="secondary">Save exclusions</button>
+    <button id="flush" class="secondary">Upload now</button>
+    <a id="open" href="#" target="_blank" rel="noopener">Open dashboard</a>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

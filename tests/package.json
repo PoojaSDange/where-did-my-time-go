@@ -1,0 +1,4 @@
+{ "name": "wdmt-frontend-tests", "private": true, "version": "1.0.0",
+  "description": "jsdom smoke tests for the website (run against a live demo-mode backend)",
+  "scripts": { "test": "node frontend_dom.js" },
+  "devDependencies": { "jsdom": "^25.0.1" } }

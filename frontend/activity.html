@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Your activity — Where Did My Time Go?</title>
+<script>
+  try {
+    if (localStorage.getItem("wdmt-theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="grain" data-page="activity">
+
+<header class="nav nav-blur sticky top-0 z-20 border-b border-[var(--line)] px-8">
+  <div class="mx-auto flex h-[68px] max-w-[1180px] items-center justify-between gap-4">
+    <a href="index.html" class="flex items-center gap-2 text-left">
+      <span class="grid h-8 w-8 place-items-center rounded-xl bg-[var(--lime)] text-[#243313]">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6z"/></svg>
+      </span>
+      <span class="text-[14px] font-semibold tracking-[-.03em]">Where Did My Time Go?</span>
+    </a>
+    <nav class="desktop-nav flex items-center gap-7" aria-label="Primary">
+      <a href="index.html" class="navitem">Home</a>
+      <a href="activity.html" class="navitem active" aria-current="page">Activity</a>
+      <a href="insights.html" class="navitem">Insights</a>
+      <a href="trends.html" class="navitem">Trends</a>
+      <a href="ask.html" class="navitem">Ask AI</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <span class="wide-only mr-2 flex items-center gap-1.5 text-xs text-[var(--muted)]">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M3 10h18"/><path d="M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg>
+        
+      </span>
+      <button class="theme-toggle grid h-9 w-9 place-items-center rounded-full border border-[var(--line)]" aria-label="Toggle theme" type="button">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v2"/><path d="M12 19v2"/><path d="M3 12h2"/><path d="M19 12h2"/><path d="M5.6 5.6 7 7"/><path d="M17 17l1.4 1.4"/><path d="M18.4 5.6 17 7"/><path d="M7 17l-1.4 1.4"/><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.7 15.2A8.5 8.5 0 0 1 8.8 3.3 8.5 8.5 0 1 0 20.7 15.2z"/></svg>
+      </button>
+      <button class="grid h-9 w-9 place-items-center rounded-full bg-[var(--ink)] text-[var(--paper)]" aria-label="Settings" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06-2 2-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V20h-2.82v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06-2-2 .06-.06A1.65 1.65 0 0 0 7.6 15a1.65 1.65 0 0 0-1.51-1H6v-2.82h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06 2-2 .06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V5h2.82v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06 2 2-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H20V14h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav flex gap-5 overflow-auto pb-2" aria-label="Primary mobile">
+    <a href="index.html" class="navitem">Home</a>
+    <a href="activity.html" class="navitem active" aria-current="page">Activity</a>
+    <a href="insights.html" class="navitem">Insights</a>
+    <a href="trends.html" class="navitem">Trends</a>
+    <a href="ask.html" class="navitem">Ask AI</a>
+  </nav>
+</header>
+
+<main class="main mx-auto max-w-[1180px] px-8 pb-16 pt-12 page">
+
+  <header class="flex flex-wrap items-end justify-between gap-6">
+    <div>
+      <p class="text-xs font-semibold text-[var(--muted)]">ACTIVITY EXPLORER</p>
+      <h1 class="display mt-3 text-[54px] leading-none">Your activity</h1>
+      <p class="mt-4 text-[16px] text-[var(--muted)]">Explore how you spent your time.</p>
+    </div>
+
+    <div class="range-scroll flex gap-1 rounded-full bg-[var(--faint)] p-1">
+      <button class="range" data-range="6h">Last 6 hours</button>
+      <button class="range" data-range="12h">Last 12 hours</button>
+      <button class="range" data-range="today">Today</button>
+      <button class="range" data-range="yesterday">Yesterday</button>
+      <button class="range" data-range="24h">Last 24 hours</button>
+      <button class="range active" data-range="48h">Last 48 hours</button>
+      <button class="range" data-range="7d">Last 7 days</button>
+      <button class="range" data-range="month">This month</button>
+      <button class="range" data-range="custom">Custom</button>
+    </div>
+  </header>
+
+  <div id="customRangeFields" hidden class="mt-7 flex flex-wrap items-end gap-3 rounded-2xl bg-[var(--faint)] p-4">
+    <label class="text-xs font-semibold">Start date/time
+      <input type="datetime-local" class="ml-2 rounded-lg border border-[var(--line)] bg-[var(--paper)] p-2 text-xs"  />
+    </label>
+    <span class="text-[var(--muted)]">→</span>
+    <label class="text-xs font-semibold">End date/time
+      <input type="datetime-local" class="ml-2 rounded-lg border border-[var(--line)] bg-[var(--paper)] p-2 text-xs"  />
+    </label>
+  </div>
+
+  <section class="stat-grid mt-11 grid grid-cols-5 gap-5 border-y border-[var(--line)] py-6">
+    <div class="border-l border-[var(--line)] pl-4 first:border-0 first:pl-0"><p class="text-xs text-[var(--muted)]">Total activity</p><p class="metric mt-1 text-[24px] font-semibold tracking-[-.055em]">12h 34m</p></div>
+    <div class="border-l border-[var(--line)] pl-4"><p class="text-xs text-[var(--muted)]">Focused</p><p class="metric mt-1 text-[24px] font-semibold tracking-[-.055em]">5h 21m</p></div>
+    <div class="border-l border-[var(--line)] pl-4"><p class="text-xs text-[var(--muted)]">Learning</p><p class="metric mt-1 text-[24px] font-semibold tracking-[-.055em]">3h 12m</p></div>
+    <div class="border-l border-[var(--line)] pl-4"><p class="text-xs text-[var(--muted)]">Distraction</p><p class="metric mt-1 text-[24px] font-semibold tracking-[-.055em]">2h 48m</p></div>
+    <div class="border-l border-[var(--line)] pl-4"><p class="text-xs text-[var(--muted)]">Break</p><p class="metric mt-1 text-[24px] font-semibold tracking-[-.055em]">1h 13m</p></div>
+  </section>
+
+  <section class="mt-11 grid grid-cols-[160px_1fr] gap-6">
+    <div>
+      <p class="text-xs font-semibold text-[var(--muted)]">PAST 48 HOURS</p>
+      <p class="mt-2 text-sm text-[var(--muted)]">Tap a session for the context behind it.</p>
+    </div>
+
+    <div class="divide-y divide-[var(--line)]">
+
+      <div class="timeline-row py-5">
+        <button class="timeline-toggle flex w-full items-start gap-4 text-left" aria-expanded="false" aria-controls="session-1">
+          <div class="mt-1.5"><div class="dot" style="background:#b8df69"></div></div>
+          <p class="w-[42px] shrink-0 font-mono text-xs text-[var(--muted)]">09:10</p>
+          <div class="timeline-copy flex-1">
+            <div class="flex items-center gap-2"><p class="font-semibold">GitHub</p><span class="tag focus">Focused</span></div>
+            <p class="mt-1 text-xs text-[var(--muted)]">Pull requests, issues, and code review</p>
+          </div>
+          <p class="activity-meta mr-3 text-xs text-[var(--muted)]"></p>
+          <p class="metric min-w-[50px] text-right text-sm font-semibold">42 min</p>
+          <span class="mt-0.5 text-[var(--muted)]">
+            <svg class="icon-chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            <svg class="icon-down" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div id="session-1" hidden class="ml-[83px] mt-4 grid grid-cols-2 gap-3 rounded-xl bg-[var(--faint)] p-4 text-xs sm:grid-cols-4">
+          <div><p class="text-[var(--muted)]">Website</p><p class="mt-1 font-semibold">github.com/atelier-labs</p></div>
+          <div><p class="text-[var(--muted)]">Started</p><p class="mt-1 font-semibold">Sep 24 · 09:10</p></div>
+          <div><p class="text-[var(--muted)]">Category</p><p class="mt-1 font-semibold">Focused</p></div>
+          <div><p class="text-[var(--muted)]">Time away</p><p class="mt-1 font-semibold">No</p></div>
+        </div>
+      </div>
+
+      <div class="timeline-row py-5">
+        <button class="timeline-toggle flex w-full items-start gap-4 text-left" aria-expanded="false" aria-controls="session-2">
+          <div class="mt-1.5"><div class="dot" style="background:#c7baff"></div></div>
+          <p class="w-[42px] shrink-0 font-mono text-xs text-[var(--muted)]">10:02</p>
+          <div class="timeline-copy flex-1">
+            <div class="flex items-center gap-2"><p class="font-semibold">Stack Overflow</p><span class="tag learn">Learning</span></div>
+            <p class="mt-1 text-xs text-[var(--muted)]">Researching a TypeScript rendering issue</p>
+          </div>
+          <p class="activity-meta mr-3 text-xs text-[var(--muted)]"></p>
+          <p class="metric min-w-[50px] text-right text-sm font-semibold">18 min</p>
+          <span class="mt-0.5 text-[var(--muted)]">
+            <svg class="icon-chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            <svg class="icon-down" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div id="session-2" hidden class="ml-[83px] mt-4 grid grid-cols-2 gap-3 rounded-xl bg-[var(--faint)] p-4 text-xs sm:grid-cols-4">
+          <div><p class="text-[var(--muted)]">Website</p><p class="mt-1 font-semibold">stackoverflow.com</p></div>
+          <div><p class="text-[var(--muted)]">Started</p><p class="mt-1 font-semibold">Sep 24 · 10:02</p></div>
+          <div><p class="text-[var(--muted)]">Category</p><p class="mt-1 font-semibold">Learning</p></div>
+          <div><p class="text-[var(--muted)]">Time away</p><p class="mt-1 font-semibold">No</p></div>
+        </div>
+      </div>
+
+      <div class="timeline-row py-5">
+        <button class="timeline-toggle flex w-full items-start gap-4 text-left" aria-expanded="false" aria-controls="session-3">
+          <div class="mt-1.5"><div class="dot" style="background:#c7baff"></div></div>
+          <p class="w-[42px] shrink-0 font-mono text-xs text-[var(--muted)]">10:20</p>
+          <div class="timeline-copy flex-1">
+            <div class="flex items-center gap-2"><p class="font-semibold">YouTube</p><span class="tag learn">Learning</span></div>
+            <p class="mt-1 text-xs text-[var(--muted)]">Design systems lecture</p>
+          </div>
+          <p class="activity-meta mr-3 text-xs text-[var(--muted)]"></p>
+          <p class="metric min-w-[50px] text-right text-sm font-semibold">35 min</p>
+          <span class="mt-0.5 text-[var(--muted)]">
+            <svg class="icon-chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            <svg class="icon-down" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div id="session-3" hidden class="ml-[83px] mt-4 grid grid-cols-2 gap-3 rounded-xl bg-[var(--faint)] p-4 text-xs sm:grid-cols-4">
+          <div><p class="text-[var(--muted)]">Website</p><p class="mt-1 font-semibold">youtube.com</p></div>
+          <div><p class="text-[var(--muted)]">Started</p><p class="mt-1 font-semibold">Sep 24 · 10:20</p></div>
+          <div><p class="text-[var(--muted)]">Category</p><p class="mt-1 font-semibold">Learning</p></div>
+          <div><p class="text-[var(--muted)]">Time away</p><p class="mt-1 font-semibold">No</p></div>
+        </div>
+      </div>
+
+      <div class="timeline-row py-5">
+        <button class="timeline-toggle flex w-full items-start gap-4 text-left" aria-expanded="false" aria-controls="session-4">
+          <div class="mt-1.5"><div class="dot" style="background:#f0b6c3"></div></div>
+          <p class="w-[42px] shrink-0 font-mono text-xs text-[var(--muted)]">11:02</p>
+          <div class="timeline-copy flex-1">
+            <div class="flex items-center gap-2"><p class="font-semibold">Instagram</p><span class="tag distract">Distraction</span></div>
+            <p class="mt-1 text-xs text-[var(--muted)]">Short-form social browsing</p>
+          </div>
+          <p class="activity-meta mr-3 text-xs text-[var(--muted)]">Marked as time away</p>
+          <p class="metric min-w-[50px] text-right text-sm font-semibold">21 min</p>
+          <span class="mt-0.5 text-[var(--muted)]">
+            <svg class="icon-chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            <svg class="icon-down" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div id="session-4" hidden class="ml-[83px] mt-4 grid grid-cols-2 gap-3 rounded-xl bg-[var(--faint)] p-4 text-xs sm:grid-cols-4">
+          <div><p class="text-[var(--muted)]">Website</p><p class="mt-1 font-semibold">instagram.com</p></div>
+          <div><p class="text-[var(--muted)]">Started</p><p class="mt-1 font-semibold">Sep 24 · 11:02</p></div>
+          <div><p class="text-[var(--muted)]">Category</p><p class="mt-1 font-semibold">Distraction</p></div>
+          <div><p class="text-[var(--muted)]">Time away</p><p class="mt-1 font-semibold">Yes</p></div>
+        </div>
+      </div>
+
+      <div class="timeline-row py-5">
+        <button class="timeline-toggle flex w-full items-start gap-4 text-left" aria-expanded="false" aria-controls="session-5">
+          <div class="mt-1.5"><div class="dot" style="background:#b8df69"></div></div>
+          <p class="w-[42px] shrink-0 font-mono text-xs text-[var(--muted)]">11:28</p>
+          <div class="timeline-copy flex-1">
+            <div class="flex items-center gap-2"><p class="font-semibold">Notion</p><span class="tag focus">Focused</span></div>
+            <p class="mt-1 text-xs text-[var(--muted)]">Project planning and writing</p>
+          </div>
+          <p class="activity-meta mr-3 text-xs text-[var(--muted)]"></p>
+          <p class="metric min-w-[50px] text-right text-sm font-semibold">1h 24m</p>
+          <span class="mt-0.5 text-[var(--muted)]">
+            <svg class="icon-chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            <svg class="icon-down" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div id="session-5" hidden class="ml-[83px] mt-4 grid grid-cols-2 gap-3 rounded-xl bg-[var(--faint)] p-4 text-xs sm:grid-cols-4">
+          <div><p class="text-[var(--muted)]">Website</p><p class="mt-1 font-semibold">notion.so</p></div>
+          <div><p class="text-[var(--muted)]">Started</p><p class="mt-1 font-semibold">Sep 24 · 11:28</p></div>
+          <div><p class="text-[var(--muted)]">Category</p><p class="mt-1 font-semibold">Focused</p></div>
+          <div><p class="text-[var(--muted)]">Time away</p><p class="mt-1 font-semibold">No</p></div>
+        </div>
+      </div>
+
+      <div class="timeline-row py-5">
+        <button class="timeline-toggle flex w-full items-start gap-4 text-left" aria-expanded="false" aria-controls="session-6">
+          <div class="mt-1.5"><div class="dot" style="background:#b8df69"></div></div>
+          <p class="w-[42px] shrink-0 font-mono text-xs text-[var(--muted)]">14:18</p>
+          <div class="timeline-copy flex-1">
+            <div class="flex items-center gap-2"><p class="font-semibold">Figma</p><span class="tag focus">Focused</span></div>
+            <p class="mt-1 text-xs text-[var(--muted)]">Interaction design</p>
+          </div>
+          <p class="activity-meta mr-3 text-xs text-[var(--muted)]"></p>
+          <p class="metric min-w-[50px] text-right text-sm font-semibold">39 min</p>
+          <span class="mt-0.5 text-[var(--muted)]">
+            <svg class="icon-chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            <svg class="icon-down" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div id="session-6" hidden class="ml-[83px] mt-4 grid grid-cols-2 gap-3 rounded-xl bg-[var(--faint)] p-4 text-xs sm:grid-cols-4">
+          <div><p class="text-[var(--muted)]">Website</p><p class="mt-1 font-semibold">figma.com</p></div>
+          <div><p class="text-[var(--muted)]">Started</p><p class="mt-1 font-semibold">Sep 24 · 14:18</p></div>
+          <div><p class="text-[var(--muted)]">Category</p><p class="mt-1 font-semibold">Focused</p></div>
+          <div><p class="text-[var(--muted)]">Time away</p><p class="mt-1 font-semibold">No</p></div>
+        </div>
+      </div>
+
+      <div class="timeline-row py-5">
+        <button class="timeline-toggle flex w-full items-start gap-4 text-left" aria-expanded="false" aria-controls="session-7">
+          <div class="mt-1.5"><div class="dot" style="background:#f0b6c3"></div></div>
+          <p class="w-[42px] shrink-0 font-mono text-xs text-[var(--muted)]">16:10</p>
+          <div class="timeline-copy flex-1">
+            <div class="flex items-center gap-2"><p class="font-semibold">YouTube</p><span class="tag distract">Distraction</span></div>
+            <p class="mt-1 text-xs text-[var(--muted)]">Entertainment outside learning sessions</p>
+          </div>
+          <p class="activity-meta mr-3 text-xs text-[var(--muted)]">Marked as time away</p>
+          <p class="metric min-w-[50px] text-right text-sm font-semibold">52 min</p>
+          <span class="mt-0.5 text-[var(--muted)]">
+            <svg class="icon-chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            <svg class="icon-down" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div id="session-7" hidden class="ml-[83px] mt-4 grid grid-cols-2 gap-3 rounded-xl bg-[var(--faint)] p-4 text-xs sm:grid-cols-4">
+          <div><p class="text-[var(--muted)]">Website</p><p class="mt-1 font-semibold">youtube.com</p></div>
+          <div><p class="text-[var(--muted)]">Started</p><p class="mt-1 font-semibold">Sep 24 · 16:10</p></div>
+          <div><p class="text-[var(--muted)]">Category</p><p class="mt-1 font-semibold">Distraction</p></div>
+          <div><p class="text-[var(--muted)]">Time away</p><p class="mt-1 font-semibold">Yes</p></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script src="assets/api.js"></script>
+<script src="assets/script.js" defer></script>
+<script src="assets/pages.js" defer></script>
+</body>
+</html>

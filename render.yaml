@@ -1,0 +1,40 @@
+# # OPTIONAL hosted DEMO only (synthetic data). Real use is local-first: see README.
+# # The demo never accepts real browsing data: history import and live ingestion are disabled in demo mode.
+# services:
+#   - type: web
+#     name: where-did-my-time-go-demo
+#     runtime: python
+#     rootDir: backend
+#     buildCommand: pip install -r requirements.txt
+#     # 0.0.0.0 is required on a hosting platform and is acceptable ONLY because this instance holds synthetic data.
+#     startCommand: python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+#     envVars:
+#       - key: APP_MODE
+#         value: demo
+#       - key: DB_PATH               # disposable: re-seeded on startup if empty
+#         value: /tmp/wdmt-demo.sqlite3
+#       - key: DATA_DIR
+#         value: /tmp/wdmt-demo
+#       - key: GROQ_API_KEY          # optional: only powers the Ask page on the demo
+#         sync: false
+
+# Hosted DEMO only (synthetic data). Real use is local-first: see README.
+services:
+  - type: web
+    name: where-did-my-time-go-demo
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: APP_MODE
+        value: demo
+      - key: DB_PATH
+        value: /tmp/wdmt-demo.sqlite3
+      - key: DATA_DIR
+        value: /tmp/wdmt-demo
+      - key: GROQ_API_KEY
+        sync: false

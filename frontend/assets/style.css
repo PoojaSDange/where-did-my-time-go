@@ -1,0 +1,249 @@
+/* ==========================================================================
+   Where Did My Time Go? — shared design system
+   Loaded on every page alongside the Tailwind CDN build. These are the
+   custom tokens and components Tailwind can't express on its own.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  --ink: #20211f;
+  --muted: #74766f;
+  --faint: #f3f4ee;
+  --paper: #fcfcf9;
+  --line: #e7e8e0;
+
+  --lime: #c9ef76;
+  --lime-deep: #62971b;
+  --violet: #d9d1ff;
+  --lav: #f0edff;
+  --peach: #ffe2c1;
+  --rose: #f7d9df;
+
+  --radius: 22px;
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --ink: #f3f4ee;
+  --muted: #a8aaa2;
+  --faint: #252725;
+  --paper: #171917;
+  --line: #32352f;
+
+  --lime: #b8e663;
+  --lime-deep: #b8e663;
+  --lav: #29263b;
+  --peach: #3e3024;
+  --rose: #3a292e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -0.015em;
+}
+
+/* Serif display face for headlines and quoted analysis text */
+.display {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.065em;
+}
+
+/* Faint paper grain so flat colour fields read as printed, not digital */
+.grain::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+}
+
+.nav-blur {
+  background: color-mix(in srgb, var(--paper) 84%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+button, input { font: inherit; }
+
+/* ---- Buttons ---------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  padding: 10px 15px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+.btn:hover { transform: translateY(-1px); background: var(--faint); }
+.btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn.primary:hover { opacity: 0.86; }
+.btn.lime { background: var(--lime); color: #263310; border-color: var(--lime); }
+
+/* ---- Cards & layout ---------------------------------------------------- */
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--paper) 72%, var(--faint));
+}
+
+.page { animation: enter 0.38s cubic-bezier(0.2, 0.7, 0.2, 1); }
+@keyframes enter {
+  from { opacity: 0; transform: translateY(9px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.metric { font-variant-numeric: tabular-nums; }
+
+/* ---- Segmented usage bar (Home) ---------------------------------------- */
+.seg { min-width: 5px; transition: filter 0.2s ease; }
+.seg:hover { filter: brightness(0.88); }
+
+/* ---- Session timeline (Activity) --------------------------------------- */
+.timeline-row { position: relative; }
+.timeline-row::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 29px;
+  bottom: -25px;
+  width: 1px;
+  background: var(--line);
+}
+.timeline-row:last-child::before { display: none; }
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px var(--paper);
+}
+
+.timeline-toggle .icon-down { display: none; }
+.timeline-toggle[aria-expanded="true"] .icon-chev { display: none; }
+.timeline-toggle[aria-expanded="true"] .icon-down { display: block; }
+
+/* ---- Line charts (Trends) ---------------------------------------------- */
+.chart-grid line { stroke: var(--line); stroke-dasharray: 3 5; }
+
+.chart-path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 600;
+  animation: draw 1.4s ease both;
+}
+.soft-path {
+  fill: none;
+  stroke: var(--lime-deep);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 600;
+  animation: draw 1.6s ease both;
+}
+@keyframes draw {
+  from { stroke-dashoffset: 600; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* ---- Nav ---------------------------------------------------------------- */
+.navitem { position: relative; padding: 8px 2px; color: var(--muted); font-size: 13px; font-weight: 600; text-decoration: none; }
+.navitem.active { color: var(--ink); }
+.navitem.active::after {
+  content: "";
+  position: absolute;
+  left: 1px; right: 1px; bottom: 1px;
+  height: 2px;
+  border-radius: 4px;
+  background: var(--ink);
+}
+
+/* ---- AI orb avatar -------------------------------------------------------- */
+.ai-orb {
+  background: radial-gradient(circle at 36% 32%, #fff7be 0, var(--lime) 26%, #9ba5ff 58%, #5d57bf 100%);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--lime) 14%, transparent), 0 18px 40px rgba(104, 93, 216, 0.2);
+}
+
+/* ---- Category tags -------------------------------------------------------- */
+.tag { font-size: 11px; font-weight: 700; padding: 5px 9px; border-radius: 999px; letter-spacing: 0.01em; }
+.focus    { background: color-mix(in srgb, var(--lime) 42%, var(--faint)); }
+.learn    { background: var(--lav); }
+.break    { background: var(--peach); }
+.distract { background: var(--rose); }
+
+/* ---- Time range pills ------------------------------------------------------ */
+.range {
+  padding: 8px 11px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+  background: transparent;
+}
+.range.active {
+  color: var(--ink);
+  border-color: var(--line);
+  background: var(--paper);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* ---- Ask AI ------------------------------------------------------------------ */
+.ask-input {
+  background: color-mix(in srgb, var(--paper) 72%, var(--faint));
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 38px rgba(30, 32, 28, 0.06);
+}
+.pulse { animation: pulse 1.5s ease-in-out infinite; }
+@keyframes pulse {
+  50% { opacity: 0.45; transform: scale(0.88); }
+}
+
+/* ---- Theme toggle icon swap (no JS needed for the icon itself) ---------------- */
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+html.dark .theme-toggle .icon-sun { display: block; }
+html.dark .theme-toggle .icon-moon { display: none; }
+
+/* ---- Responsive ---------------------------------------------------------------- */
+@media (max-width: 700px) {
+  .desktop-nav { display: none; }
+  .nav, .main { padding-inline: 18px; }
+  .hero-grid, .home-grid, .trend-grid { grid-template-columns: 1fr !important; }
+  .hero-title { font-size: 58px !important; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .wide-only { display: none; }
+  .range-scroll { overflow: auto; scrollbar-width: none; }
+  .timeline-copy { min-width: 0; }
+  .activity-meta { display: none; }
+  .retention { grid-template-columns: 1fr !important; }
+  .analysis-copy { font-size: 27px !important; }
+}
+
+@media (min-width: 701px) {
+  .mobile-nav { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

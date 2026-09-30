@@ -1,0 +1,22 @@
+# secrets & local data - never commit
+.env
+.env.*
+!.env.example
+backend/.env
+backend/data/*
+!backend/data/.gitkeep
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.db
+api_token.txt
+# python / node / editor
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+node_modules/
+tests/node_modules/
+.vscode/
+.DS_Store
