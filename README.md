@@ -1,8 +1,8 @@
 # Where Did My Time Go?
 
-
-
 **Local-first by design because browsing history is sensitive, with a hosted demo using synthetic data only.**
+
+**Live demo:**  https://where-did-my-time-go-demo.onrender.com (synthetic data only; hosted on Render's free tier, so the first load after idle takes about a minute)
 
 An AI-powered browser productivity analyzer. It answers: *where did my browsing time go, what was I doing, what was potentially wasted, what patterns appear over days and months, and what should I change?* — and lets you interrogate your own history through an AI supervisor agent.
 
@@ -63,7 +63,7 @@ Chrome History file ──copy──> history_reader       Extension (MV3) ─�
 Requires Python 3.10+ and Chrome.
 
 ```bash
-cd "<YOUR_PATH>"      # your path
+cd where-did-my-time-go/backend
 python -m venv .venv && .venv\Scripts\activate                 # (Linux/macOS: source .venv/bin/activate)
 pip install -r requirements.txt
 copy .env.example .env                                         # (cp on Linux/macOS) then add GROQ_API_KEY / GEMINI_API_KEY
@@ -78,28 +78,41 @@ The server binds to `127.0.0.1` only. Every API call needs the token; CORS allow
 
 Reset the token: `python security.py reset`.
 
-## Demo mode
+## Demo mode (interviewers)
 
 `APP_MODE=demo` seeds ~60 days of **synthetic** data (46 estimated + 14 measured), disables history reading and live ingestion, and serves the same website. Try it locally:
 
 ```bash
-set APP_MODE=demo && python -m uvicorn main:app          # (export APP_MODE=demo on Linux/macOS)
+# Windows (cmd)
+set APP_MODE=demo
+python -m uvicorn main:app
+
+# Linux/macOS
+APP_MODE=demo python -m uvicorn main:app
 ```
 
-`render.yaml` deploys it to Render. The demo SQLite lives in `/tmp` and is re-seeded when empty; there is no persistent disk. The Ask page works only if you set `GROQ_API_KEY` on that instance (rate-limited per IP).
+`render.yaml` deploys it to Render's free tier. The demo SQLite lives in `/tmp` and is re-seeded on every start; there is no persistent disk, and the service sleeps after 15 minutes idle (first request afterwards takes about a minute). The Ask page works only if you set `GROQ_API_KEY` on that instance (rate-limited per IP).
 
 ---
 
 ## Tests
 
 ```bash
-cd backend && pip install -r requirements-dev.txt && python -m pytest tests     # 96 backend tests
+cd backend && pip install -r requirements-dev.txt && python -m pytest tests     # 102 backend tests
 node extension/tests/sim.js                                                     # 11 extension simulations (mock chrome API, fake clock)
 bash tests/run_frontend_tests.sh                                                # 8 page tests: jsdom against a live demo backend
 bash tests/run_frontend_tests.sh frontend_local.js                              # 4 tests: profile chooser flow against a live local backend (fake profiles)
 ```
 
+Covered: fresh install, explicit profile choice (nothing imported until chosen, no client-supplied paths, switching discards a partial import), bootstrap (once-only, chunk re-run idempotency, crash resume, locked-file copy), activation boundary / no overlap, midnight split, tab/URL/title/focus/idle events, service-worker kill + restart mid-session, backend down + queue + duplicate prevention, classification, confident-only cache, overrides, malformed/partial LLM replies, failed status, Groq 429 / budget / circuit breaker, daily analysis with pending rows, resume after budget exhaustion, catch-up after the PC was off, monthly analysis, agent over history + live, redaction and sensitive-domain handling, delete-all, auth / CORS / Host rejection, localhost binding, demo purity, estimated/measured separation.
 
+## Honest limitations
+
+- The automated tests use **mocks and a fake Chrome `History` file**. <AFTER YOUR LIVE RUN, REPLACE THIS LINE WITH: Validated end-to-end on my own Chrome profile with live Groq and Gemini on DD Mon YYYY.>
+- **Model ids are configuration.** Defaults: `GROQ_LIVE_MODEL=<ID YOU VERIFIED>`, `GROQ_ANALYSIS_MODEL=<ID>`, `GROQ_AGENT_MODEL=<ID, must support tool calling>`, `GEMINI_MODEL=<ID>`. Provider model names change; `list_groq_models.py` and `list_gemini_models.py` print what your key can use. If an id is invalid, affected rows end up "unclassified" with a clear error.
+- History durations are **estimates** by nature (conservative caps: 5 min per page unless Chrome recorded a duration). The UI labels them as such everywhere.
+- Idle is 3 minutes of no input (audible tabs keep counting), so a long silent video with no audio is not counted.
+- The website loads Tailwind and Inter from CDNs, as the original design did, so it needs internet for styling.
 
 ## Layout
 
@@ -109,6 +122,3 @@ extension/  manifest.json background.js popup.html popup.js  tests/sim.js
 frontend/   index|activity|insights|trends|ask.html  assets/{style,script,api,pages}.js|css
 tests/      frontend_dom.js  run_frontend_tests.sh
 ```
-
-
-Preview - https://where-did-my-time-go-demo.onrender.com
