@@ -63,7 +63,7 @@ Chrome History file ──copy──> history_reader       Extension (MV3) ─�
 Requires Python 3.10+ and Chrome.
 
 ```bash
-cd "D:\Comapany Wise\HSBC\Where did my time go\backend"      # your path
+cd "<YOUR_PATH>"      # your path
 python -m venv .venv && .venv\Scripts\activate                 # (Linux/macOS: source .venv/bin/activate)
 pip install -r requirements.txt
 copy .env.example .env                                         # (cp on Linux/macOS) then add GROQ_API_KEY / GEMINI_API_KEY
