@@ -1,5 +1,7 @@
 # Where Did My Time Go?
 
+
+
 **Local-first by design because browsing history is sensitive, with a hosted demo using synthetic data only.**
 
 An AI-powered browser productivity analyzer. It answers: *where did my browsing time go, what was I doing, what was potentially wasted, what patterns appear over days and months, and what should I change?* — and lets you interrogate your own history through an AI supervisor agent.
@@ -107,3 +109,6 @@ extension/  manifest.json background.js popup.html popup.js  tests/sim.js
 frontend/   index|activity|insights|trends|ask.html  assets/{style,script,api,pages}.js|css
 tests/      frontend_dom.js  run_frontend_tests.sh
 ```
+
+
+Preview - https://where-did-my-time-go-demo.onrender.com
